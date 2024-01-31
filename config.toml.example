@@ -1,0 +1,3 @@
+server = "https://tomkahe.com"
+access_token = ""
+user_agent = "WikiMastodon (EMAIL@EXAMPLE.com)"
