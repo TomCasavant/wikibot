@@ -59,7 +59,7 @@ class WikiBot:
     deaths = self.format_events(deaths)
     summary = random_article.summary.split('\n\n', 1)[0]
     article_title = random_article.title.replace("_", " ")
-    tags = " ".join(["#wikipedia", f"#{tag_date}", f"#{article_title.replace(' ', '')}"])
+    tags = " ".join(["#wikipedia", f"#{tag_date}", f"#{article_title.replace(' ', '').replace('-','')}"])
     return (
         f"# [{markdown_date}]({date_url})\n"
         "**This day in history**:\n"
