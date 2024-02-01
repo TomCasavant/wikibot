@@ -4,6 +4,7 @@ from datetime import datetime
 import random
 import toml
 from mastodon import Mastodon
+from urllib.parse import unquote
 
 class Wiki:
   def __init__(self, user_agent):
@@ -12,7 +13,7 @@ class Wiki:
   def get_random_page(self):
     response = requests.get('https://en.wikipedia.org/wiki/Special:Random')
     url_title = response.url.split('/')[-1]
-
+    url_title = unquote(url_title)
     page = self.wiki_client.page(url_title)
     return page
 
@@ -86,3 +87,4 @@ class WikiBot:
 if __name__ == '__main__':
   bot = WikiBot()
   bot.post()
+  #print(bot.format_post())
