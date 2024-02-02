@@ -1,3 +1,6 @@
 server = "https://tomkahe.com"
 access_token = ""
 user_agent = "WikiMastodon (EMAIL@EXAMPLE.com)"
+num_events=3
+num_births=3
+num_deaths=3
