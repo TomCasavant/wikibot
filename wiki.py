@@ -5,6 +5,7 @@ import random
 import toml
 from mastodon import Mastodon
 from urllib.parse import unquote
+import os
 
 class Wiki:
   def __init__(self, user_agent):
@@ -31,7 +32,8 @@ class Wiki:
 
 class WikiBot:
   def __init__(self) -> None:
-    with open('config.toml', 'r') as config_file:
+    config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.toml')
+    with open(config_path, 'r') as config_file:
       self.config = toml.load(config_file)
       self.server = self.config.get("server")
       self.access_token = self.config.get("access_token")
