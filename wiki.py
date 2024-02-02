@@ -18,17 +18,17 @@ class Wiki:
     page = self.wiki_client.page(url_title)
     return page
 
-  def day_in_history(self, month_day):
+  def day_in_history(self, month_day, num_events=3, num_births=3, num_deaths=3):
     page = self.wiki_client.page(month_day)
-    events = random.sample(random.choice(page.section_by_title('Events').sections).text.split("\n"), 3)
-    births = random.sample(random.choice(page.section_by_title('Births').sections).text.split("\n"), 3)
-    deaths = random.sample(random.choice(page.section_by_title('Deaths').sections).text.split("\n"), 3)
+    events = random.sample(random.choice(page.section_by_title('Events').sections).text.split("\n"), num_events)
+    births = random.sample(random.choice(page.section_by_title('Births').sections).text.split("\n"), num_births)
+    deaths = random.sample(random.choice(page.section_by_title('Deaths').sections).text.split("\n"), num_deaths)
     return [page.title, page.fullurl, events, births, deaths]
 
-  def today_in_history(self):
+  def today_in_history(self, num_events=3, num_births=3, num_deaths=3):
    today = datetime.now()
    month_day = today.strftime("%B_%d")
-   return self.day_in_history(month_day)
+   return self.day_in_history(month_day, num_events, num_births, num_deaths)
 
 class WikiBot:
   def __init__(self) -> None:
@@ -50,7 +50,10 @@ class WikiBot:
     return '\n'.join(updated_events)
 
   def format_post(self):
-    date, date_url, events, births, deaths = self.wiki.today_in_history()
+    num_events = self.config.get("num_events")
+    num_births = self.config.get("num_births")
+    num_deaths = self.config.get("num_deaths")
+    date, date_url, events, births, deaths = self.wiki.today_in_history(num_events, num_births, num_deaths)
     random_article = self.wiki.get_random_page()
     markdown_date = date.replace("_", " ")
     #print(date.replace("_", ""))
@@ -88,5 +91,10 @@ class WikiBot:
 
 if __name__ == '__main__':
   bot = WikiBot()
-  bot.post()
+  try:
+    print(bot.format_post())
+    #bot.post()
+  except Exception as e:
+    print(e)
+    #bot.post()
   #print(bot.format_post())
