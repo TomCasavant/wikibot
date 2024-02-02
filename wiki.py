@@ -92,9 +92,9 @@ class WikiBot:
 if __name__ == '__main__':
   bot = WikiBot()
   try:
-    print(bot.format_post())
-    #bot.post()
+    #print(bot.format_post())
+    bot.post()
   except Exception as e:
     print(e)
-    #bot.post()
+    bot.post()
   #print(bot.format_post())
