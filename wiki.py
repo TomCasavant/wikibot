@@ -108,6 +108,7 @@ class WikiBot:
     num_events = self.config.get("num_events")
     num_births = self.config.get("num_births")
     num_deaths = self.config.get("num_deaths")
+    num_holidays = self.config.get("num_holidays")
 
     today = self.wiki.today_in_history()
     date = today.title
@@ -120,7 +121,7 @@ class WikiBot:
     events = self.format_events(today.get_events(num_events))
     births = self.format_events(today.get_births(num_births))
     deaths = self.format_events(today.get_deaths(num_deaths))
-    holidays = self.format_events(today.get_holidays(3))
+    holidays = self.format_events(today.get_holidays(num_holidays))
     summary = self.format_summary(random_article.summary.split('\n\n', 1)[0])
 
     article_title = random_article.title.replace("_", " ")
