@@ -17,3 +17,5 @@ Provides a daily markdown formatted post with random events from this date in hi
 7. Configure wiki user agent and customize number of events/birts/deaths/holidays in config.toml
 8. run the script with `python wiki.py`
 9. (Optional) configure crontab, sample configuration: `0 18 * * * /home/tom/wiki-bot/.venv/bin/python /home/tom/wiki-bot/wiki.py` (runs every day at 6pm)
+
+[![Follow @daily_wikipedia@tomkahe.com](https://fedi-badge.deno.dev/@daily_wikipedia@tomkahe.com/followers.svg?style=plastic)](https://tomkahe.com/@daily_wikipedia)
